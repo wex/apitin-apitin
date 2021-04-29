@@ -12,8 +12,10 @@ class ExampleModule extends Module
     public function route(Router $router): void
     {
         // Route / to: $this->test(...)
-        $router->get('/', function() {
-            return $this->call('test');
+        $router->get('*', function($uri) {
+            return $this->call('test', [
+                'uri' => $uri,
+            ]);
         });
     }
 
@@ -23,9 +25,10 @@ class ExampleModule extends Module
      * Database implements DI class
      * -> $db will be automatically populated with Database::factory()
      */
-    public function test(Database $db)
+    public function test($uri, Database $db)
     {
         return [
+            'uri' => $uri,
             'foo' => $db->one('SELECT CURRENT_TIMESTAMP()'),
             'bar' => config('DATABASE_HOSTNAME', ''),
         ];
