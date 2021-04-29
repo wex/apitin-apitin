@@ -13,4 +13,11 @@ RewriteRule "^/.gitignore"      - [F]
 RewriteCond %{REQUEST_FILENAME} -s [OR]
 RewriteCond %{REQUEST_FILENAME} -l [OR]
 RewriteCond %{REQUEST_FILENAME} -d
-RewriteRule ^.*$ index.php [NC,L]
+RewriteRule ^.*$ - [NC,L]
+RewriteRule ^(.*)$ index.php?__uri=$1 [NC,L]
+
+### Disabled indexes
+Options -Indexes
+
+### Pass authorization if given
+SetEnvIf Authorization .+ HTTP_AUTHORIZATION=$0
