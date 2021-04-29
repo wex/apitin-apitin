@@ -6,6 +6,7 @@
      * @author Niko Hujanen <niko.hujanen@gmail.com>
      */
 
+    define('STARTED_AT',    microtime(true));
     define('VENDOR_PATH',   __DIR__ . '/vendor/');
     define('PUBLIC_PATH',   rtrim(__DIR__, DIRECTORY_SEPARATOR));
     define('APP_PATH',      PUBLIC_PATH . '/app/');
