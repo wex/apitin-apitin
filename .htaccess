@@ -1,0 +1,15 @@
+### Enable mod_rewrite
+RewriteEngine On
+
+### Restrict private paths/files
+RewriteRule "^/.git"            - [F]
+RewriteRule "^/vendor"          - [F]
+RewriteRule "^/app"             - [F]
+RewriteRule "^/composer.json"   - [F]
+RewriteRule "^/.gitignore"      - [F]
+
+### Rewrite all non-existing requests to index.php
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+RewriteCond %{REQUEST_FILENAME} -l [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^.*$ index.php [NC,L]

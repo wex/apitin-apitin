@@ -17,5 +17,10 @@
         "psr-4": {
             "": "app/"
         }
+    },
+    "scripts": {
+        "post-create-project-cmd": [
+            "@php -r \"file_exists('app/.env') || rename('app/.env-example', 'app/.env');\""
+        ]
     }
 }
