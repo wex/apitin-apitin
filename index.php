@@ -1,4 +1,10 @@
 <?php
+    /**
+     * Apitin project template
+     * 
+     * @copyright Niko Hujanen, 2021
+     * @author Niko Hujanen <niko.hujanen@gmail.com>
+     */
 
     define('VENDOR_PATH',   __DIR__ . '/vendor/');
     define('PUBLIC_PATH',   rtrim(__DIR__, DIRECTORY_SEPARATOR));
@@ -33,8 +39,6 @@
         exit(0);
         
     } catch (Throwable $e) {
-
-        echo $e; exit;
 
         if (is_subclass_of($e, Apitin\Router\RouterException::class)) {
 
