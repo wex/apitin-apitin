@@ -23,7 +23,7 @@
      */
     $app = new Apitin\Application;
     $app->register(
-        ExampleModule::class,
+        ExampleModule::class
     );
 
     /**

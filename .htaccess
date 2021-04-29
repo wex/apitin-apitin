@@ -6,6 +6,7 @@ RewriteRule "^/.git"            - [F]
 RewriteRule "^/vendor"          - [F]
 RewriteRule "^/app"             - [F]
 RewriteRule "^/composer.json"   - [F]
+RewriteRule "^/composer.lock"   - [F]
 RewriteRule "^/.gitignore"      - [F]
 
 ### Rewrite all non-existing requests to index.php
