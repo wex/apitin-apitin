@@ -9,7 +9,6 @@
 ## TODO
 
 * Route caching
-* Create documentation
 
 ## Getting started
 
