@@ -11,7 +11,7 @@
     "license": "MIT",
     "require": {
         "php": ">=8.0.0",
-        "apitin/framework": "^0.0.4"
+        "apitin/framework": "1.*"
     },
     "autoload": {
         "psr-4": {
