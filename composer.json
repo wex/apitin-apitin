@@ -19,6 +19,7 @@
         }
     },
     "scripts": {
+        "dev": "php -S 127.0.0.1:3000 index.php -t",
         "post-create-project-cmd": [
             "@php -r \"file_exists('app/.env') || rename('app/.env-example', 'app/.env');\""
         ]
