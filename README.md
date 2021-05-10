@@ -80,13 +80,31 @@ class FooModule extends Apitin\Module
 }
 ```
 
-4. Module registration event
+4. Module registration event & call event
 ```php
 class FooModule extends Apitin\Module 
 {
-    public function onRegister(Application &$application): void
+    public function onRegister(Apitin\Application &$application): void
     {
         // Here be dragons.
+    }
+
+    public function onCall(Apitin\Application &$application): void
+    {
+        // Called while current module is called (route is matched)
+    }
+}
+```
+
+5. Alternative routing with `Attributes`
+```php
+class TestModule extends Apitin\Module
+{
+    #[Route("*", ["GET"])]
+    public function test($uri)
+    {
+        echo "Called for: {$uri}";
+        exit;
     }
 }
 ```

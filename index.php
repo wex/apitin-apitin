@@ -14,12 +14,6 @@
     require_once VENDOR_PATH . 'autoload.php';
 
     /**
-     * You can send custom headers here.
-     * 
-     * header('Access-Control-Allow-Origin: *');
-     */
-
-    /**
      * Initialize application and register modules.
      */
     $app = new Apitin\Application;

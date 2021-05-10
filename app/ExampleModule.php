@@ -1,26 +1,20 @@
 <?php
 
 use Apitin\Module;
-use Apitin\Router;
+use Apitin\Route;
 
 class ExampleModule extends Module
 {
-    public function route(Router $router): void
-    {
-        $router->get('*', function($uri) {
-            echo $this->call('help');
-            exit;
-        });
-    }
-
-    public function help()
+    #[Route("*", ["GET"])]
+    public function help($uri)
     {
         $thisModule = get_class($this);
         $thisMethod = __FUNCTION__;
         $thisFile   = realpath(__FILE__);
         $configPath = realpath(APP_PATH . '/.env');
+        $prettyUri  = "/{$uri}";
 
-        return <<<EOF
+        echo <<<EOF
 <!doctype html>
 <html lang="en">
     <head>
@@ -44,6 +38,9 @@ class ExampleModule extends Module
                     General information
                 </h2>
                 <p>
+                    You called for uri <kbd>{$prettyUri}</kbd>.
+                </p>
+                <p>
                     You are currently viewing result of <kbd>{$thisModule}->{$thisMethod}()</kbd> at <kbd>{$thisFile}</kbd>.
                 </p>
                 <p>
@@ -54,5 +51,6 @@ class ExampleModule extends Module
     </body>
 </html>
 EOF;
+        exit;
     }
 }
