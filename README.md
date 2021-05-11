@@ -60,6 +60,9 @@ $db->update('test', ['foo' => 'bar'], ['id' => 1]);
 
 // Replace
 $db->replace('test', ['foo' => 'bar'], ['id' => 1]);
+
+// Delete
+$db->delete('test', ['id' => 1]);
 ```
 
 3. Static dependency injection
@@ -107,4 +110,15 @@ class TestModule extends Apitin\Module
         exit;
     }
 }
+```
+
+6. Http-helper
+```php
+print_r( Http::post('https://example.com/')->json() );
+```
+
+7. CLI-support
+```sh
+# This is mapped to GET /test
+php index.php test
 ```

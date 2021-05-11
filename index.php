@@ -35,17 +35,21 @@
         
     } catch (Throwable $e) {
 
+        if (Apitin\isDebugging()) {
+            echo "<pre>{$e}</pre>";
+        }
+
         if (is_subclass_of($e, Apitin\Router\RouterException::class)) {
 
             http_response_code($e->getCode());
-            dprint_r($e);
+            Apitin\dprint_r($e);
             exit(1);
 
         } else {
 
-            log_r($e);
+            Apitin\log_r($e);
             http_response_code(500);
-            dprint_r($e);
+            Apitin\dprint_r($e);
             exit(1);
 
         }
