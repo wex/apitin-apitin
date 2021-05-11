@@ -32,6 +32,10 @@
         http_response_code(200);
         echo json_encode($result);
         exit(0);
+
+    } catch (Apitin\Router\ServeWithBuiltinException $e) {
+
+        return false;
         
     } catch (Throwable $e) {
 
