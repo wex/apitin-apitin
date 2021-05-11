@@ -5,14 +5,28 @@ use Apitin\Route;
 
 class ExampleModule extends Module
 {
-    #[Route("*", ["GET"])]
-    public function help($uri)
+    #[Route("/", ["GET"])]
+    public function help()
     {
         $thisModule = get_class($this);
         $thisMethod = __FUNCTION__;
         $thisFile   = realpath(__FILE__);
         $configPath = realpath(APP_PATH . '/.env');
-        $prettyUri  = "/{$uri}";
+
+        $phpVersion = PHP_VERSION;
+        $osVersion  = PHP_OS_FAMILY;
+        $phpModules = implode("\n", array_map(function($t) { return "<kbd>{$t}</kbd>"; }, get_loaded_extensions()));
+        $wsVersion  = $_SERVER['SERVER_SOFTWARE'] ?? '[unknown]';
+
+        try {
+            if (($version = Apitin\Database::factory()->one('SELECT VERSION()'))) {
+                $dbOk = '<span class="ui green basic label">' . $version . '</span>';
+            } else {
+                $dbOk = '<span class="ui red basic label">FAIL</span>';
+            }
+        } catch (Exception $e) {
+            $dbOk = '<span class="ui red basic label">FAIL</span>';
+        }
 
         echo <<<EOF
 <!doctype html>
@@ -38,14 +52,47 @@ class ExampleModule extends Module
                     General information
                 </h2>
                 <p>
-                    You called for uri <kbd>{$prettyUri}</kbd>.
-                </p>
-                <p>
                     You are currently viewing result of <kbd>{$thisModule}->{$thisMethod}()</kbd> at <kbd>{$thisFile}</kbd>.
                 </p>
                 <p>
                     You should add your database credentials to <kbd>{$configPath}</kbd>.
                 </p>
+            </div>
+            <div class="ui divider"></div>
+            <div class="ui padded basic segment">
+                <h2 class="ui header">
+                    Environment
+                </h2>
+                <table class="ui definition table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Version</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>OS</td>
+                            <td>{$osVersion}</td>
+                        </tr>
+                        <tr>
+                            <td>PHP</td>
+                            <td>{$phpVersion}</td>
+                        </tr>
+                        <tr>
+                            <td>Modules</td>
+                            <td>{$phpModules}</td>
+                        </tr>
+                        <tr>
+                            <td>Server</td>
+                            <td>{$wsVersion}</td>
+                        </tr>
+                        <tr>
+                            <td>Database</td>
+                            <td>{$dbOk}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </main>
     </body>
