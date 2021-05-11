@@ -28,10 +28,19 @@
 
         $result = $app();
 
-        header("Content-Type: application/json");
-        http_response_code(200);
-        echo json_encode($result);
-        exit(0);
+        if (is_subclass_of($result, Apitin\Renderable::class)) {
+
+            $result->render();
+            exit(0);
+
+        } else {
+
+            header("Content-Type: application/json");
+            http_response_code(200);
+            echo json_encode($result);
+            exit(0);
+
+        }
 
     } catch (Apitin\Router\ServeWithBuiltinException $e) {
 
