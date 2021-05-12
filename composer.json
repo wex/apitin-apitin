@@ -21,7 +21,8 @@
     "scripts": {
         "dev": [
             "Composer\\Config::disableProcessTimeout",
-            "php -S 127.0.0.1:3000 index.php -t"
+            "php -r \"echo PHP_EOL.'Server is up and running: http://localhost:3000/'.PHP_EOL.PHP_EOL;\"",
+            "php -S localhost:3000 index.php -t"
         ],
         "post-create-project-cmd": [
             "@php -r \"@unlink('README.md');\"",
