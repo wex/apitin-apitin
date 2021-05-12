@@ -122,3 +122,15 @@ print_r( Http::post('https://example.com/')->json() );
 # This is mapped to GET /test
 php index.php test
 ```
+
+8. Templates with partials
+```php
+class TestModule extends Apitin\Module
+{
+    #[Route("/test", ["GET"])]
+    public function test()
+    {
+        return Template::create(APP_PATH . 'views/test.phtml');
+    }
+}
+```
