@@ -17,9 +17,7 @@
      * Initialize application and register modules.
      */
     $app = new Apitin\Application;
-    $app->register(
-        ExampleModule::class
-    );
+    $app->register(...require APP_PATH . '/app.php');
 
     /**
      * Handle request and response.
