@@ -25,7 +25,7 @@
             "php -S localhost:3000 index.php -t"
         ],
         "post-create-project-cmd": [
-            "@php -r \"@unlink('README.md');\"",
+            "@php -r \"@unlink('README.md'); @unlink('LICENSE');\"",
             "@php -r \"file_exists('app/.env') || rename('app/.env-example', 'app/.env');\""
         ]
     }
