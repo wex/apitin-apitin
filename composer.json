@@ -12,7 +12,7 @@
     "require": {
         "php": ">=8.0.0",
         "apitin/framework": "1.*",
-        "apitin/template": "^1.0"
+        "apitin/template": "1.*"
     },
     "autoload": {
         "psr-4": {
