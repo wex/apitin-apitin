@@ -26,7 +26,7 @@
 
         $result = $app();
 
-        if (is_subclass_of($result, Apitin\Renderable::class)) {
+        if (is_subclass_of($result, Apitin\Template\Renderable::class)) {
 
             $result->render();
             exit(0);
