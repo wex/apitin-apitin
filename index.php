@@ -24,7 +24,10 @@
      */
     try {
 
-        $result = $app();
+        $result = $app(
+            $_SERVER['REQUEST_METHOD'],
+            Apitin\isBuiltin() ? $_SERVER['REQUEST_URI'] : ($_REQUEST['__uri'] ?? '')
+        );
 
         if (is_subclass_of($result, Apitin\Template\Renderable::class)) {
 
