@@ -112,18 +112,34 @@ class TestModule extends Apitin\Module
 }
 ```
 
-6. Http-helper
+6. Alternative static dependency injection with `Attributes`
+```php
+class TestModule extends Apitin\Module
+{
+    #[Inject(Apitin\Database::class)]
+    protected Apitin\Database $db;
+
+    #[Route("*", ["GET"])]
+    public function test($uri)
+    {
+        var_dump( $this->db );
+        exit;
+    }
+}
+```
+
+7. Http-helper
 ```php
 print_r( Http::post('https://example.com/')->json() );
 ```
 
-7. CLI-support
+8. CLI-support
 ```sh
 # This is mapped to GET /test
 php index.php test
 ```
 
-8. Templates with partials
+9. Templates with partials
 ```php
 class TestModule extends Apitin\Module
 {
